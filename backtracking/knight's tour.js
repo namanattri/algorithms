@@ -11,11 +11,14 @@ function solve() {
     print(matrix);
     
     //moves
-    let xCoordinates = [2, 2, 1, 1, -2, -2, -1, -1];
-    let yCoordinates = [1, -1, 2, -2, 1, -1, 2, -2];
+    // let xCoordinates = [2, 2, 1, 1, -2, -2, -1, -1];
+    // let yCoordinates = [1, -1, 2, -2, 1, -1, 2, -2];
+    let xCoordinates = [2, 1, -1, -2, -2, -1,  1,  2];
+    let yCoordinates = [1, 2,  2,  1, -1, -2, -2, -1];
     
     //initial move 0 at top left 0, 0
-    let x = 0, y = 0; 
+    let x = 0;
+    let y = 0; 
     matrix[x][y] = 0; // 0: first move
     nextMove = 1; //as current move 0 is already done: the variable is passed to recursive function 
     
@@ -27,12 +30,14 @@ function solve() {
 }
 
 function solveKnightsTour(currentX, currentY, nextMove, matrix, xCoordinates, yCoordinates) {
-    console.log(nextMove);
+    //console.log(nextMove);
+    //print(matrix);
     //if last move has passed check nextMove == 64 i.e. more than last cell of 0 indexed 8 x 8 chess board
     if(nextMove == 8 * 8) return true;
     
     for(let k = 0; k < 8; k++) {
-        let [nextX, nextY] = [currentX + xCoordinates[k], currentY + yCoordinates[k]];
+        let nextX = currentX + xCoordinates[k];
+        let nextY = currentY + yCoordinates[k];
         
         if(canMove(nextX, nextY, matrix)) {
             matrix[nextX][nextY] = nextMove;
